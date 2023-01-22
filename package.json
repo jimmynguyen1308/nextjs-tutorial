@@ -19,5 +19,20 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "4.9.4"
+  },
+  "prettier": {
+    "semi": false,
+    "overrides": [
+      {
+        "files": ".ts",
+        "options": {
+          "semi": false
+        }
+      }
+    ]
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^8.6.0",
+    "prettier": "^2.8.3"
   }
 }
