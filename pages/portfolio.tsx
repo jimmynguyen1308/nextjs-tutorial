@@ -1,9 +1,10 @@
 import React from "react"
 import Menu from "@/components/Menu"
+import styles from "@/styles/Home.module.css"
 
 export default function Portfolio() {
   return (
-    <div>
+    <div className={styles.main}>
       <h1>Portfolio</h1>
       <Menu />
     </div>
