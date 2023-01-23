@@ -42,11 +42,15 @@ export default function BlogpostIntro(props: BlogpostIntroProps) {
 
 export async function getStaticProps() {
   // Retrieve the first 6 records from the API using fetch()
-  const response = await fetch("https://jsonplaceholder.typicode.com/posts")
+  // const response = await fetch("https://jsonplaceholder.typicode.com/posts")
+  const response = await fetch("http://localhost:3000/api/posts")
   const data = await response.json()
   return {
+    // props: {
+    //   posts: data.slice(0, 10),
+    // },
     props: {
-      posts: data.slice(0, 10),
+      posts: data.posts.slice(0, 10),
     },
   }
 }
@@ -56,15 +60,13 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { params, req, res, query } = context
   console.log(query)
   console.log(req.headers.cookie)
-  res.setHeader("Set-Cookie", ["name=User"])
+  res.setHeader("Set-Cookie", ["name=Posts"])
   // const { user } = params
-  const response = await fetch(`https://jsonplaceholder.typicode.com/posts`)
+  const response = await fetch(`http://localhost:3000/api/posts`)
   const data = await response.json()
 
   return {
-    props: {
-      post: data,
-    },
+    props: data,
   }
 }
 */
