@@ -42,16 +42,16 @@ export default function BlogpostIntro(props: BlogpostIntroProps) {
 
 export async function getStaticProps() {
   // Retrieve the first 6 records from the API using fetch()
-  // const response = await fetch("https://jsonplaceholder.typicode.com/posts")
-  const response = await fetch("http://localhost:3000/api/posts")
+  const response = await fetch("https://jsonplaceholder.typicode.com/posts")
+  // const response = await fetch("http://localhost:3000/api/posts")
   const data = await response.json()
   return {
-    // props: {
-    //   posts: data.slice(0, 10),
-    // },
     props: {
-      posts: data.posts.slice(0, 10),
+      posts: data.slice(0, 10),
     },
+    // props: {
+    //   posts: data.posts.slice(0, 10),
+    // },
   }
 }
 

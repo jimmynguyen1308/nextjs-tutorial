@@ -31,12 +31,12 @@ export default function Post(props: PostIDProps) {
 }
 
 export async function getStaticPaths() {
-  // const response = await fetch("https://jsonplaceholder.typicode.com/posts")
-  // const data = await response.json()
-  // const paths = data.map((post: PostProps) => {
-  const response = await fetch("http://localhost:3000/api/posts")
+  const response = await fetch("https://jsonplaceholder.typicode.com/posts")
   const data = await response.json()
-  const paths = data.posts.map((post: PostProps) => {
+  const paths = data.map((post: PostProps) => {
+    // const response = await fetch("http://localhost:3000/api/posts")
+    // const data = await response.json()
+    // const paths = data.posts.map((post: PostProps) => {
     return {
       params: { postID: `${post.id}`, year: `2023` },
     }
@@ -54,26 +54,31 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context: GetStaticPropsContext) {
   const { params } = context
-  // const response = await fetch(
-  //   `https://jsonplaceholder.typicode.com/posts/${params!.postID}`
-  // )
   const response = await fetch(
-    `http://localhost:3000/api/posts/${params!.postID}`
+    `https://jsonplaceholder.typicode.com/posts/${params!.postID}`
   )
+  // const response = await fetch(
+  //   `http://localhost:3000/api/posts/${params!.postID}`
+  // )
   const data = await response.json()
   console.log(data)
 
-  if (!data.post.id)
+  if (!data.id)
     return {
       notFound: true,
     }
 
-  // return {
-  //   props: {
-  //     post: data,
-  //   },
-  // }
+  // if (!data.post.id)
+  //   return {
+  //     notFound: true,
+  //   }
+
   return {
-    props: data,
+    props: {
+      post: data,
+    },
   }
+  // return {
+  //   props: data,
+  // }
 }
